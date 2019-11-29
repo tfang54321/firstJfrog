@@ -1,0 +1,30 @@
+node {
+ 
+  def mvnHome = tool 'maven-3.6.1' 
+
+
+stage('Checkout') {
+
+
+ git 'https://github.com/tfang54321/firstJfrog.git'
+mvnHome = tool 'maven-3.6.1' 
+
+}
+
+
+//stage('buildimage') {
+
+
+//sh  "'${mvnHome}/bin/gradle'   docker"
+ 
+ //sh " docker run -p 8091:8080 ca.gc.dfo/gs-spring-boot-docker-psffs1126"
+
+
+//}
+
+stage('build and push to jfrog'){
+
+sh  "'${mvnHome}/bin/mvn'   clean install"
+sh  "'${mvnHome}/bin/mvn'   deploy "
+}
+}
